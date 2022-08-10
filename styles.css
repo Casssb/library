@@ -117,3 +117,13 @@ main {
 .book-form-element {
   padding: 0.2rem;
 }
+
+.book-form-element textarea {
+  width: 100%;
+}
+
+.form-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
