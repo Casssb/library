@@ -1,13 +1,14 @@
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read;
-    this.isRead = function() {
-        return `${this.title} by ${this.author}, ${this.pages}, ${this.read ? 'read': 'not read yet'}`
+const openBookModal = document.querySelector('#open-book-modal');
+const darkmode = document.querySelector('#darkmode');
+const modal = document.querySelector('#modal');
+
+
+openBookModal.addEventListener('click', () => {
+    modal.style.display = 'flex';
+})
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
     }
-}
-
-const silence = new Book('silence', 'g nicohla', 500, true);
-
-console.log(silence.isRead())
+  }

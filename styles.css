@@ -21,6 +21,8 @@ body {
   font-family: var(--ff-main);
 }
 
+/* Header */
+
 header {
   display: flex;
   align-items: center;
@@ -65,7 +67,7 @@ header {
   border: none;
 }
 
-.add-book {
+.open-book-modal {
     font-size: 2.5rem;
   background: rgb(29, 253, 252);
   background: rgb(4, 20, 10);
@@ -80,8 +82,38 @@ header {
   -webkit-text-fill-color: transparent;
 }
 
+/* Library cards section */
+
 main {
   height: 80vh;
   width: 100vw;
   background-color: var(--col-main-background);
+}
+
+/* Add book modal section */
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.book-form {
+  background-color: var(--col-background-highlight);
+  width: min-content;
+  padding: 2rem;
+  border-radius: 1rem;
+
+}
+
+.book-form-element {
+  padding: 0.2rem;
 }
