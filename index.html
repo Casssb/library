@@ -38,7 +38,7 @@
       <div class="booklist-wrapper"></div>
     </main>
     <div class="modal" id="modal">
-      <form action="#" class="book-form">
+      <form action="#" class="book-form" id="book-form">
         <div class="book-form-element">
           <label for="book-form-title">Title</label>
           <input
@@ -83,15 +83,45 @@
           <fieldset class="book-form-rating">
             <legend>Rating</legend>
             <label for="rating1">1</label>
-            <input type="radio" id="rating1" name="rating" class="book-rating" value="1" />
+            <input
+              type="radio"
+              id="rating1"
+              name="rating"
+              class="book-rating"
+              value="1"
+            />
             <label for="rating2">2</label>
-            <input type="radio" id="rating2" name="rating" class="book-rating" value="2" />
+            <input
+              type="radio"
+              id="rating2"
+              name="rating"
+              class="book-rating"
+              value="2"
+            />
             <label for="rating3">3</label>
-            <input type="radio" id="rating3" name="rating" class="book-rating" value="3" />
+            <input
+              type="radio"
+              id="rating3"
+              name="rating"
+              class="book-rating"
+              value="3"
+            />
             <label for="rating4">4</label>
-            <input type="radio" id="rating4" name="rating" class="book-rating" value="4" />
+            <input
+              type="radio"
+              id="rating4"
+              name="rating"
+              class="book-rating"
+              value="4"
+            />
             <label for="rating5">5</label>
-            <input type="radio" id="rating5" name="rating" class="book-rating" value="5" />
+            <input
+              type="radio"
+              id="rating5"
+              name="rating"
+              class="book-rating"
+              value="5"
+            />
           </fieldset>
         </div>
         <div class="book-form-element">
@@ -99,11 +129,12 @@
           <input type="checkbox" name="book-form-read" id="book-form-read" />
         </div>
         <div class="book-form-element form-buttons">
-          <div class="book-form-main-buttons">
-            <button type="submit" id="book-form-submit">Add<i class="bx bxs-book-add"></i></button>
-            <button type="submit">Edit<i class="bx bxs-edit"></i></button>
-          </div>
-          <button type="button" class="book-form-close" id="book-form-close">Close <i class="bx bxs-x-circle"></i></button>
+          <button type="submit" id="book-form-submit">
+            Add<i class="bx bxs-book-add"></i>
+          </button>
+          <button type="button" class="book-form-close" id="book-form-close">
+            Close <i class="bx bxs-x-circle"></i>
+          </button>
         </div>
       </form>
     </div>
