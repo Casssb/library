@@ -45,6 +45,10 @@ function appendBooksToDom() {
 
 }
 
+function createBookCard() {
+  
+}
+
 function getRating() {
   let rating;
   bookRating.forEach(radio => {
