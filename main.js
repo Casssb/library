@@ -9,39 +9,50 @@ const bookTitle = document.querySelector('#book-form-title');
 const bookAuthor = document.querySelector('#book-form-author');
 const bookPages = document.querySelector('#book-form-pages');
 const bookDescription = document.querySelector('#book-form-description');
-const bookRating = document.querySelectorAll(`.book-rating:checked`);
+const bookRating = document.querySelectorAll('.book-rating');
 const bookRead = document.querySelector('#book-form-read');
 const bookSubmit = document.querySelector('#book-form-submit');
 
 const booklist = [];
 
-function Book(title, author, pages, description, rating, read) {
+function Book(title, author, pages, description, rating, read, index) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.description = description;
   this.rating = rating;
   this.read = read;
+  this.index = index;
 }
 
 function addToBooklist() {
+  let bookIndex = booklist.length;
   let book = new Book(
     bookTitle.value,
     bookAuthor.value,
     bookPages.value,
     bookDescription.value,
-    bookRead.checked
+    getRating(),
+    bookRead.checked,
+    bookIndex
   );
   booklist.push(book)
   console.log('event happened')
-}
-
-function clearForm() {
-
+  bookForm.reset();
 }
 
 function appendBooksToDom() {
 
+}
+
+function getRating() {
+  let rating;
+  bookRating.forEach(radio => {
+    if(radio.checked) {
+      rating = radio.value;
+    }
+  })
+  return rating;
 }
 
 bookForm.addEventListener('submit', (e) => {

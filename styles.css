@@ -84,6 +84,18 @@ header {
 
 /* Library cards section */
 
+.booklist {
+
+}
+
+.booklist-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-auto-rows: min-content;
+  gap: 1rem;
+  padding: 1rem;
+}
+
 main {
   height: 100%;
   width: 100vw;
