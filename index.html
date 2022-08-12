@@ -49,8 +49,27 @@
             must be claimed in person. Otherwise, he would probably be dead
             already.
           </p>
-          <p class="book-card-rating">5</p>
-          
+          <div class="book-card-interactive">
+            <div class="book-card-checkboxes">
+              <p class="book-card-rating">5</p>
+              <div class="book-card-read">
+                <label for="book-card-read">Read</label>
+                <input
+                  type="checkbox"
+                  id="book-card-read"
+                  name="book-card-read"
+                />
+              </div>
+            </div>
+            <div class="book-card-buttons">
+              <button type="button" class="book-card-button" id="edit-button">
+                <i class="bx bx-edit-alt"></i>
+              </button>
+              <button type="button" class="book-card-button" id="delete-button">
+                <i class="bx bx-trash"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </main>

@@ -2,6 +2,7 @@ const openBookModal = document.querySelector('#open-book-modal');
 const darkmode = document.querySelector('#darkmode');
 const modal = document.querySelector('#modal');
 const closeBookModal = document.querySelector('#book-form-close');
+const cardContainer = document.querySelector('.booklist-wrapper');
 
 /* Book form nodes*/
 const bookForm = document.querySelector('#book-form')
@@ -13,9 +14,9 @@ const bookRating = document.querySelectorAll('.book-rating');
 const bookRead = document.querySelector('#book-form-read');
 const bookSubmit = document.querySelector('#book-form-submit');
 
-const booklist = [];
+let booklist = [];
 
-function Book(title, author, pages, description, rating, read, index) {
+function Book(title, author, pages, description, rating=3, read, index) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -37,16 +38,43 @@ function addToBooklist() {
     bookIndex
   );
   booklist.push(book)
+  appendBooksToDom()
   console.log('event happened')
   bookForm.reset();
 }
 
 function appendBooksToDom() {
-
+  cardContainer.innerHTML = ''
+  booklist.forEach(book => {
+    createBookCard(book)
+  })
 }
 
-function createBookCard() {
-  
+function createBookCard(book) {
+  const bookCard = document.createElement('div'); 
+  bookCard.classList.add('book-card');
+
+  const bookCardTitle = document.createElement('h2');
+  bookCardTitle.classList.add('book-card-title');
+  bookCardTitle.innerText = book.title;
+  bookCard.append(bookCardTitle);
+
+  const bookCardAuthor = document.createElement('p');
+  bookCardAuthor.classList.add('book-card-author');
+  bookCardAuthor.innerText = book.author;
+  bookCard.append(bookCardAuthor);
+
+  const bookCardPages = document.createElement('p');
+  bookCardPages.classList.add('book-card-pages');
+  bookCardPages.innerText = book.pages;
+  bookCard.append(bookCardPages);
+
+  const bookCardDescription = document.createElement('p');
+  bookCardDescription.classList.add('book-card-description');
+  bookCardDescription.innerText = book.description;
+  bookCard.append(bookCardDescription);
+
+  cardContainer.append(bookCard)
 }
 
 function getRating() {
@@ -78,3 +106,6 @@ window.onclick = function (event) {
     modal.style.display = 'none';
   }
 };
+
+
+let testBooks = []

@@ -26,7 +26,8 @@ body {
 header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 2rem;
   width: 100vw;
   height: min-content;
   background-color: var(--col-background-highlight);
@@ -115,9 +116,25 @@ header {
   font-size: small;
 }
 
-.book-card-rating {
-  font-size: medium;
+.book-card-interactive {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.book-card-checkboxes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.book-card-buttons {
+  display: flex;
+  height: min-content;
+  width: min-content;
+  gap: 0.2rem;
+}
+
 
 main {
   height: 100%;
