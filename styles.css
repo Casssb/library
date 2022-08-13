@@ -104,7 +104,7 @@ header {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 
@@ -121,7 +121,8 @@ header {
 }
 
 .book-card-interactive {
-  align-self: stretch;
+  margin-top: auto;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -133,6 +134,11 @@ header {
   justify-content: center;
   gap: 0.5rem;
 }
+
+.book-card-read label {
+  padding: 0 0.2rem;
+}
+
 .book-card-buttons {
   display: flex;
   height: min-content;
@@ -183,4 +189,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.book-form-submit {
+  display: block;
+}
+
+.book-form-update {
+  display: block;
 }

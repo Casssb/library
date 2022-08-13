@@ -13,10 +13,11 @@ const bookDescription = document.querySelector('#book-form-description');
 const bookRating = document.querySelectorAll('.book-rating');
 const bookRead = document.querySelector('#book-form-read');
 const bookSubmit = document.querySelector('#book-form-submit');
+const bookUpdate = document.querySelector('#book-form-update');
 
 let booklist = [];
 
-function Book(title, author, pages, description, rating = 3, read, index) {
+function Book(title, author, pages, description, rating, read, index) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -25,6 +26,16 @@ function Book(title, author, pages, description, rating = 3, read, index) {
   this.read = read;
   this.index = index;
 }
+
+function getRating() {
+  let rating;
+  bookRating.forEach((radio) => {
+    if (radio.checked) {
+      rating = radio.value;
+    }
+  });
+  return rating;
+};
 
 function addToBooklist() {
   let bookIndex = booklist.length;
@@ -45,12 +56,14 @@ function addToBooklist() {
 
 function appendBooksToDom() {
   cardContainer.innerHTML = '';
-  booklist.forEach((book) => {
-    createBookCard(book);
+  booklist.forEach((book, index) => {
+    createBookCard(book, index);
   });
+  addListenersToCard()
 }
 
-function createBookCard(book) {
+function createBookCard(book, index) {
+  let bookIndex = index;
   const bookCard = document.createElement('div');
   bookCard.classList.add('book-card');
 
@@ -107,24 +120,51 @@ function createBookCard(book) {
   bookCardInteractiveContainer.append(bookCardButtonContainer);
 
   const editButton = document.createElement('button');
-  editButton.innerHTML = '<i class="bx bx-edit-alt"></i>'
+  editButton.innerHTML = '<i class="bx bx-edit-alt"></i>';
+  editButton.setAttribute('id', 'edit-button');
+  editButton.setAttribute('data-index', bookIndex);
+  editButton.classList.add('book-card-button');
   bookCardButtonContainer.append(editButton);
 
   const deleteButton = document.createElement('button');
-  deleteButton.innerHTML = '<i class="bx bx-trash"></i>'
+  deleteButton.innerHTML = '<i class="bx bx-trash"></i>';
+  deleteButton.setAttribute('id', 'delete-button');
+  deleteButton.setAttribute('data-index', bookIndex);
+  deleteButton.classList.add('book-card-button');
   bookCardButtonContainer.append(deleteButton);
 
   cardContainer.append(bookCard);
 }
 
-function getRating() {
-  let rating;
-  bookRating.forEach((radio) => {
-    if (radio.checked) {
-      rating = radio.value;
-    }
+function addListenersToCard() {
+  const editButton = document.querySelectorAll('#edit-button');
+  const deleteButton = document.querySelectorAll('#delete-button')
+
+  editButton.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      editBook(e);
+    })
   });
-  return rating;
+
+  deleteButton.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      deleteBook(e)
+    })
+  });
+}
+
+function editBook(e) {
+  const index = e.currentTarget.dataset.index;
+  console.log(index)
+}
+
+function deleteBook(e) {
+  let index = e.currentTarget.dataset.index;
+  console.log(index)
+  booklist.splice(index, 1);
+  appendBooksToDom()
 }
 
 bookForm.addEventListener('submit', (e) => {
@@ -135,6 +175,8 @@ bookForm.addEventListener('submit', (e) => {
 
 openBookModal.addEventListener('click', () => {
   modal.style.display = 'flex';
+  bookSubmit.style.display = 'block';
+  bookUpdate.style.display = 'none';
 });
 
 closeBookModal.addEventListener('click', () => {
@@ -255,6 +297,7 @@ function appendTestBooks() {
   booklist.forEach((book) => {
     createBookCard(book);
   });
+  addListenersToCard();
 }
 
 window.addEventListener('load', appendTestBooks());
