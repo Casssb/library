@@ -74,6 +74,46 @@ function createBookCard(book) {
   bookCardDescription.innerText = book.description;
   bookCard.append(bookCardDescription);
 
+  const bookCardInteractiveContainer = document.createElement('div');
+  bookCardInteractiveContainer.classList.add('book-card-interactive');
+  bookCard.append(bookCardInteractiveContainer);
+
+  const bookCardCheckboxContainer = document.createElement('div');
+  bookCardCheckboxContainer.classList.add('book-card-checkboxes');
+  bookCardInteractiveContainer.append(bookCardCheckboxContainer);
+
+  const bookCardRating = document.createElement('p');
+  bookCardRating.classList.add('book-card-rating');
+  bookCardRating.innerText = `${book.rating}`;
+  bookCardCheckboxContainer.append(bookCardRating);
+
+  const bookCardReadContainer = document.createElement('div');
+  bookCardReadContainer.classList.add('book-card-read');
+  bookCardCheckboxContainer.append(bookCardReadContainer);
+
+  const bookCardLabel = document.createElement('label');
+  bookCardLabel.setAttribute('for', 'book-card-read');
+  bookCardLabel.innerText = 'Read?'
+  bookCardReadContainer.append(bookCardLabel);
+
+  const bookCardCheckbox = document.createElement('input');
+  bookCardCheckbox.setAttribute('type', 'checkbox');
+  bookCardCheckbox.setAttribute('id', 'book-card-read');
+  bookCardCheckbox.setAttribute('name', 'book-card-read');
+  bookCardReadContainer.append(bookCardCheckbox);
+
+  const bookCardButtonContainer = document.createElement('div');
+  bookCardButtonContainer.classList.add('book-card-buttons');
+  bookCardInteractiveContainer.append(bookCardButtonContainer);
+
+  const editButton = document.createElement('button');
+  editButton.innerHTML = '<i class="bx bx-edit-alt"></i>'
+  bookCardButtonContainer.append(editButton);
+
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML = '<i class="bx bx-trash"></i>'
+  bookCardButtonContainer.append(deleteButton);
+
   cardContainer.append(bookCard);
 }
 
@@ -198,9 +238,21 @@ let testBooks = [
 ];
 
 function appendTestBooks() {
-  let testArray = booklist.concat(testBooks);
   cardContainer.innerHTML = '';
-  testArray.forEach((book) => {
+  testBooks.forEach((book) => {
+    booklist.push(
+      new Book(
+        book.title,
+        book.author,
+        book.pages,
+        book.description,
+        book.rating,
+        book.read,
+        book.index
+      )
+    );
+  });
+  booklist.forEach((book) => {
     createBookCard(book);
   });
 }

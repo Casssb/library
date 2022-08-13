@@ -102,6 +102,10 @@ header {
   padding: 0.5rem;
   border: 2px solid var(--col-main-text);
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .book-card-author {
@@ -117,6 +121,7 @@ header {
 }
 
 .book-card-interactive {
+  align-self: stretch;
   display: flex;
   justify-content: space-between;
   align-items: center;
