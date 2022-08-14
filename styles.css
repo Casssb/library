@@ -225,3 +225,10 @@ main {
 .book-form-update {
   display: block;
 }
+
+
+@media screen and (max-width: 600px) {
+  .booklist-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
