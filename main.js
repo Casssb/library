@@ -27,6 +27,10 @@ function Book(title, author, pages, description, rating, read, index) {
   this.index = index;
 }
 
+Book.prototype.updateReadStatus = function() {
+  this.read === true ? this.read = false :  this.read = true;
+}
+
 function getRating() {
   let rating;
   bookRating.forEach((radio) => {
@@ -60,6 +64,7 @@ function appendBooksToDom() {
     createBookCard(book, index);
   });
   addListenersToCard()
+  addListenersToCheckbox()
 }
 
 function createBookCard(book, index) {
@@ -110,8 +115,11 @@ function createBookCard(book, index) {
   bookCardReadContainer.append(bookCardLabel);
 
   const bookCardCheckbox = document.createElement('input');
+  bookCardCheckbox.checked = book.read;
+  bookCardCheckbox.classList.add('book-card-read')
+  bookCardCheckbox.setAttribute('data-index', bookIndex);
   bookCardCheckbox.setAttribute('type', 'checkbox');
-  bookCardCheckbox.setAttribute('id', 'book-card-read');
+  bookCardCheckbox.setAttribute('id', `book-card-read ${bookIndex}`);
   bookCardCheckbox.setAttribute('name', 'book-card-read');
   bookCardReadContainer.append(bookCardCheckbox);
 
@@ -155,14 +163,46 @@ function addListenersToCard() {
   });
 }
 
+function addListenersToCheckbox() {
+  const checkbox = document.querySelectorAll('.book-card-read');
+  checkbox.forEach(checkbox => {
+    const index = checkbox.dataset.index
+    checkbox.addEventListener('change', (e) => {
+      e.stopPropagation();
+      booklist[index].updateReadStatus();
+      appendBooksToDom();
+    });
+  })
+}
+
 function editBook(e) {
+  bookForm.reset()
   const index = e.currentTarget.dataset.index;
-  console.log(index)
+  modal.style.display = 'flex';
+  bookSubmit.style.display = 'none';
+  bookUpdate.style.display = 'block';
+  bookTitle.value = booklist[index].title;
+  bookAuthor.value = booklist[index].author;
+  bookPages.value = booklist[index].pages;
+  bookDescription.value = booklist[index].description;
+  bookRating.value = booklist[index].rating;
+  bookRead.checked = booklist[index].read;
+  bookUpdate.setAttribute('data-index', index);
+}
+
+function confirmEdit() {
+  const index = bookUpdate.dataset.index;
+  booklist[index].title = bookTitle.value;
+  booklist[index].author = bookAuthor.value;
+  booklist[index].pages = bookPages.value;
+  booklist[index].description = bookDescription.value;
+  booklist[index].rating = getRating()
+  booklist[index].read = bookRead.checked;
+  appendBooksToDom();
 }
 
 function deleteBook(e) {
   let index = e.currentTarget.dataset.index;
-  console.log(index)
   booklist.splice(index, 1);
   appendBooksToDom()
 }
@@ -174,6 +214,7 @@ bookForm.addEventListener('submit', (e) => {
 });
 
 openBookModal.addEventListener('click', () => {
+  bookForm.reset()
   modal.style.display = 'flex';
   bookSubmit.style.display = 'block';
   bookUpdate.style.display = 'none';
@@ -182,6 +223,12 @@ openBookModal.addEventListener('click', () => {
 closeBookModal.addEventListener('click', () => {
   modal.style.display = 'none';
 });
+
+bookUpdate.addEventListener('click', () => {
+  confirmEdit()
+  bookForm.reset();
+  modal.style.display = 'none';
+})
 
 window.onclick = function (event) {
   if (event.target == modal) {
@@ -294,10 +341,7 @@ function appendTestBooks() {
       )
     );
   });
-  booklist.forEach((book) => {
-    createBookCard(book);
-  });
-  addListenersToCard();
+  appendBooksToDom()
 }
 
 window.addEventListener('load', appendTestBooks());
