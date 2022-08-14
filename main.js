@@ -27,9 +27,9 @@ function Book(title, author, pages, description, rating = 'none', read, index) {
   this.index = index;
 }
 
-Book.prototype.updateReadStatus = function() {
-  this.read === true ? this.read = false :  this.read = true;
-}
+Book.prototype.updateReadStatus = function () {
+  this.read === true ? (this.read = false) : (this.read = true);
+};
 
 function getRating() {
   let rating;
@@ -39,7 +39,7 @@ function getRating() {
     }
   });
   return rating;
-};
+}
 
 function addToBooklist() {
   let bookIndex = booklist.length;
@@ -63,8 +63,8 @@ function appendBooksToDom() {
   booklist.forEach((book, index) => {
     createBookCard(book, index);
   });
-  addListenersToCard()
-  addListenersToCheckbox()
+  addListenersToCard();
+  addListenersToCheckbox();
 }
 
 function createBookCard(book, index) {
@@ -102,7 +102,7 @@ function createBookCard(book, index) {
 
   const bookCardRating = document.createElement('p');
   bookCardRating.classList.add('book-card-rating');
-  bookCardRating.innerText = `${book.rating}`;
+  bookCardRating.innerHTML = addStarsToBookRating(Number(book.rating));
   bookCardCheckboxContainer.append(bookCardRating);
 
   const bookCardReadContainer = document.createElement('div');
@@ -111,12 +111,12 @@ function createBookCard(book, index) {
 
   const bookCardLabel = document.createElement('label');
   bookCardLabel.setAttribute('for', 'book-card-read');
-  bookCardLabel.innerText = 'Read?'
+  bookCardLabel.innerText = 'Read?';
   bookCardReadContainer.append(bookCardLabel);
 
   const bookCardCheckbox = document.createElement('input');
   bookCardCheckbox.checked = book.read;
-  bookCardCheckbox.classList.add('book-card-read')
+  bookCardCheckbox.classList.add('book-card-read');
   bookCardCheckbox.setAttribute('data-index', bookIndex);
   bookCardCheckbox.setAttribute('type', 'checkbox');
   bookCardCheckbox.setAttribute('id', `book-card-read ${bookIndex}`);
@@ -144,39 +144,58 @@ function createBookCard(book, index) {
   cardContainer.append(bookCard);
 }
 
+function addStarsToBookRating(rating) {
+  switch (rating) {
+    case 1:
+      return `<i class='bx bxs-star orange-star'></i><i class='bx bx-star'></i><i class='bx bx-star'></i><i class='bx bx-star'></i><i class='bx bx-star'></i>`;
+      break;
+    case 2:
+      return `<i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bx-star'></i><i class='bx bx-star'></i><i class='bx bx-star'></i>`;
+      break;
+    case 3:
+      return `<i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bx-star'></i><i class='bx bx-star'></i>`
+      break;
+    case 4:
+     return `<i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bx-star'></i>`
+     break;
+    default:
+      return `<i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i>`;
+  }
+}
+
 function addListenersToCard() {
   const editButton = document.querySelectorAll('#edit-button');
-  const deleteButton = document.querySelectorAll('#delete-button')
+  const deleteButton = document.querySelectorAll('#delete-button');
 
-  editButton.forEach(button => {
+  editButton.forEach((button) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
       editBook(e);
-    })
+    });
   });
 
-  deleteButton.forEach(button => {
+  deleteButton.forEach((button) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
-      deleteBook(e)
-    })
+      deleteBook(e);
+    });
   });
 }
 
 function addListenersToCheckbox() {
   const checkbox = document.querySelectorAll('.book-card-read');
-  checkbox.forEach(checkbox => {
-    const index = checkbox.dataset.index
+  checkbox.forEach((checkbox) => {
+    const index = checkbox.dataset.index;
     checkbox.addEventListener('change', (e) => {
       e.stopPropagation();
       booklist[index].updateReadStatus();
       appendBooksToDom();
     });
-  })
+  });
 }
 
 function editBook(e) {
-  bookForm.reset()
+  bookForm.reset();
   const index = e.currentTarget.dataset.index;
   modal.style.display = 'flex';
   bookSubmit.style.display = 'none';
@@ -191,10 +210,10 @@ function editBook(e) {
 }
 
 function checkRadioButton(index) {
-  bookRating.forEach(radio => {
-    if(radio.value === booklist[index].rating) {
+  bookRating.forEach((radio) => {
+    if (radio.value === booklist[index].rating) {
       radio.checked = true;
-    };
+    }
   });
 }
 
@@ -204,7 +223,7 @@ function confirmEdit() {
   booklist[index].author = bookAuthor.value;
   booklist[index].pages = bookPages.value;
   booklist[index].description = bookDescription.value;
-  booklist[index].rating = getRating()
+  booklist[index].rating = getRating();
   booklist[index].read = bookRead.checked;
   appendBooksToDom();
 }
@@ -212,7 +231,7 @@ function confirmEdit() {
 function deleteBook(e) {
   let index = e.currentTarget.dataset.index;
   booklist.splice(index, 1);
-  appendBooksToDom()
+  appendBooksToDom();
 }
 
 bookForm.addEventListener('submit', (e) => {
@@ -222,7 +241,7 @@ bookForm.addEventListener('submit', (e) => {
 });
 
 openBookModal.addEventListener('click', () => {
-  bookForm.reset()
+  bookForm.reset();
   modal.style.display = 'flex';
   bookSubmit.style.display = 'block';
   bookUpdate.style.display = 'none';
@@ -233,10 +252,10 @@ closeBookModal.addEventListener('click', () => {
 });
 
 bookUpdate.addEventListener('click', () => {
-  confirmEdit()
+  confirmEdit();
   bookForm.reset();
   modal.style.display = 'none';
-})
+});
 
 window.onclick = function (event) {
   if (event.target == modal) {
@@ -349,7 +368,7 @@ function appendTestBooks() {
       )
     );
   });
-  appendBooksToDom()
+  appendBooksToDom();
 }
 
 window.addEventListener('load', appendTestBooks());

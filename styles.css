@@ -189,6 +189,10 @@ main {
 
 }
 
+.orange-star {
+  color: #f90;
+}
+
 .book-form-rating input {
   display: none;
 }
