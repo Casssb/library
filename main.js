@@ -1,5 +1,7 @@
 const openBookModal = document.querySelector('#open-book-modal');
-const darkmode = document.querySelector('#darkmode');
+const darkmodeToggle = document.querySelector('#darkmode-toggle');
+const darkmodeIcon = document.querySelector('#darkmode-icon');
+const body = document.querySelector('body');
 const modal = document.querySelector('#modal');
 const closeBookModal = document.querySelector('#book-form-close');
 const cardContainer = document.querySelector('.booklist-wrapper');
@@ -158,8 +160,11 @@ function addStarsToBookRating(rating) {
     case 4:
      return `<i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bx-star'></i>`
      break;
+    case 5:
+     return `<i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i>`;
+     break;
     default:
-      return `<i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i><i class='bx bxs-star orange-star'></i>`;
+     return `<i class='bx bx-question-mark'></i><i class='bx bx-question-mark'></i><i class='bx bx-question-mark'></i><i class='bx bx-question-mark'></i><i class='bx bx-question-mark'></i>`
   }
 }
 
@@ -233,6 +238,19 @@ function deleteBook(e) {
   booklist.splice(index, 1);
   appendBooksToDom();
 }
+
+function changeTheme() {
+  body.classList.toggle('dark')
+  if(body.classList.contains('dark')) {
+    darkmodeIcon.classList.add('bx-moon');
+    darkmodeIcon.classList.remove('bx-sun')
+  } else {
+    darkmodeIcon.classList.add('bx-sun')
+    darkmodeIcon.classList.remove('bx-moon')
+  }
+}
+
+darkmodeToggle.addEventListener('click', changeTheme);
 
 bookForm.addEventListener('submit', (e) => {
   e.preventDefault();
