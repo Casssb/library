@@ -17,7 +17,7 @@ const bookUpdate = document.querySelector('#book-form-update');
 
 let booklist = [];
 
-function Book(title, author, pages, description, rating, read, index) {
+function Book(title, author, pages, description, rating = 'none', read, index) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -185,9 +185,17 @@ function editBook(e) {
   bookAuthor.value = booklist[index].author;
   bookPages.value = booklist[index].pages;
   bookDescription.value = booklist[index].description;
-  bookRating.value = booklist[index].rating;
+  checkRadioButton(index);
   bookRead.checked = booklist[index].read;
   bookUpdate.setAttribute('data-index', index);
+}
+
+function checkRadioButton(index) {
+  bookRating.forEach(radio => {
+    if(radio.value === booklist[index].rating) {
+      radio.checked = true;
+    };
+  });
 }
 
 function confirmEdit() {

@@ -92,7 +92,7 @@ header {
 
 .booklist-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-auto-rows: min-content;
   gap: 1rem;
   padding: 2rem;
@@ -183,6 +183,29 @@ main {
 
 .book-form-element textarea {
   width: 100%;
+}
+
+.book-form-rating {
+
+}
+
+.book-form-rating input {
+  display: none;
+}
+
+.book-form-rating label {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.book-form-rating :checked,
+.book-form-rating :checked + label {
+  color: #f90;
+}
+
+.book-form-rating label:hover,
+.book-form-rating label:hover {
+  color: #fc0;
 }
 
 .form-buttons {
