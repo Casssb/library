@@ -18,13 +18,14 @@ body {
   min-height: 100vh;
   height: 100%;
   width: 100vw;
+  color: var(--col-main-text);
   font-family: var(--ff-main);
 }
 
 body.dark {
-  --col-main-text: #262626;
-  --col-main-background: #f5f5f5;
-  --col-background-highlight: #f8fafc;
+  --col-main-text: #d3d0d0;
+  --col-main-background: #1b215c;
+  --col-background-highlight: #1e1c24;
   --col-highlight: #34d399;
   --col-highlight-dark: #047857;
   --col-error: #dc2626;
@@ -69,24 +70,37 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .header-buttons button {
   outline: none;
   border: none;
+  font-size: 2.5rem;
+  background-color: var(--col-background-highlight);
+  color: var(--col-main-text);
 }
 
-.open-book-modal {
-  font-size: 2.5rem;
-  background: rgb(29, 253, 252);
-  background: rgb(4, 20, 10);
-  background: rgb(4, 20, 10);
+.open-book-modal:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background: rgb(10, 186, 104);
   background: linear-gradient(
     86deg,
-    rgba(4, 20, 10, 0.8295693277310925) 18%,
-    rgba(29, 253, 149, 0.865983893557423) 50%,
-    rgba(21, 66, 28, 1) 100%
+    rgba(10, 186, 104, 0.865983893557423) 50%,
+    rgba(51, 138, 87, 1) 86%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.darkmode:hover {
+  transform: scale(1.1);
+  background: rgb(3, 5, 4);
+  background: linear-gradient(
+    86deg,
+    rgba(3, 5, 4, 0.865983893557423) 9%,
+    rgba(227, 225, 213, 1) 86%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -111,6 +125,7 @@ header {
   padding: 0.5rem;
   border: 2px solid var(--col-main-text);
   border-radius: 5px;
+  background-color: var(--col-background-highlight);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
