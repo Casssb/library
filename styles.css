@@ -118,11 +118,9 @@ header {
 }
 
 .book-card-author {
-
 }
 
 .book-card-pages {
-
 }
 
 .book-card-description {
@@ -144,8 +142,57 @@ header {
   gap: 0.5rem;
 }
 
+.book-card-read {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .book-card-read label {
   padding: 0 0.2rem;
+}
+
+.book-card-read input {
+}
+
+input[type='checkbox'].book-card-read {
+  font-size: 30px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1.5em;
+  height: 0.8em;
+  background: #ddd;
+  border-radius: 3em;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type='checkbox'].book-card-read:checked {
+  background: #16ff0e;
+}
+
+input[type='checkbox'].book-card-read:after {
+  position: absolute;
+  content: '';
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  left: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type='checkbox'].book-card-read:checked:after {
+  left: calc(100% - 0.9em);
 }
 
 .book-card-buttons {
@@ -154,7 +201,6 @@ header {
   width: min-content;
   gap: 0.2rem;
 }
-
 
 main {
   height: 100%;
@@ -183,7 +229,6 @@ main {
   width: min-content;
   padding: 2rem;
   border-radius: 1rem;
-
 }
 
 .book-form-element {
@@ -195,7 +240,6 @@ main {
 }
 
 .book-form-rating {
-
 }
 
 .orange-star {
@@ -234,7 +278,6 @@ main {
 .book-form-update {
   display: block;
 }
-
 
 @media screen and (max-width: 600px) {
   .booklist-wrapper {
