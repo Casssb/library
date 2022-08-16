@@ -178,9 +178,6 @@ header {
   padding: 0 0.2rem;
 }
 
-.book-card-read input {
-}
-
 input[type='checkbox'].book-card-read {
   font-size: 30px;
   -webkit-appearance: none;
@@ -225,14 +222,16 @@ input[type='checkbox'].book-card-read:checked:after {
   display: flex;
   height: min-content;
   width: min-content;
-  gap: 0.2rem;
+  gap: 0.4rem;
 }
 
 .book-card-button {
-  font-size: large;
+  font-size: x-large;
   background-color: var(--col-main-text);
+  border: none;
   box-shadow: var(--box-shadow);
   cursor: pointer;
+  padding: 0.2rem;
   border-radius: 0.2rem;
 }
 
@@ -282,9 +281,15 @@ main {
 
 .book-form-element textarea {
   width: 100%;
+  border: 1px solid var(--col-main-text);
+}
+
+.book-form-element input {
+  border: 1px solid var(--col-main-text);
 }
 
 .book-form-rating {
+  border: 1px solid var(--col-main-text);
 }
 
 .orange-star {
@@ -318,15 +323,35 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: larger;
+}
+
+.form-buttons button {
+  border: 2px solid var(--col-main-text);
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  box-shadow: var(--box-shadow);
+}
+
+.form-buttons button:hover {
+  transform: scale(1.05);
 }
 
 .book-form-submit {
   display: block;
+  color: var(--col-highlight-dark);
 }
 
 .book-form-update {
   display: block;
+  color: var(--col-amend);
 }
+
+.book-form-close {
+  color: var(--col-delete);
+}
+
+/* Media query for small screens to fix column centering */
 
 @media screen and (max-width: 600px) {
   .booklist-wrapper {
