@@ -19,19 +19,22 @@ const bookUpdate = document.querySelector('#book-form-update');
 
 let booklist = [];
 
-function Book(title, author, pages, description, rating = 'none', read, index) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.description = description;
-  this.rating = rating;
-  this.read = read;
-  this.index = index;
+class Book {
+  constructor(title, author, pages, description, rating = 'none', read, index) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.description = description;
+    this.rating = rating;
+    this.read = read;
+    this.index = index;
+  }
+
+  updateReadStatus = function () {
+    this.read === true ? (this.read = false) : (this.read = true);
+  };
 }
 
-Book.prototype.updateReadStatus = function () {
-  this.read === true ? (this.read = false) : (this.read = true);
-};
 
 function getRating() {
   let rating;
